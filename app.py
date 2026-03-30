@@ -2,7 +2,7 @@ import streamlit as st
 from pypdf import PdfReader
 import docx
 import os
-
+from openai import OpenAI
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 st.set_page_config(
