@@ -2,8 +2,8 @@ import streamlit as st
 from pypdf import PdfReader
 import docx
 import os
-from openai import OpenAI
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+from groq import Groq
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 st.set_page_config(
     page_title="MCQ Practice App",
@@ -74,7 +74,7 @@ Text:
 """
 
     response = client.chat.completions.create(
-        model="gpt-4.1-mini",
+        model="llama3-70b-8192",
         messages=[
             {"role": "user", "content": prompt}
         ]
