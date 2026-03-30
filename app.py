@@ -2,8 +2,12 @@ import streamlit as st
 from pypdf import PdfReader
 import docx
 import os
-from groq import Groq
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("GROQ_API_KEY"),
+    base_url="https://api.groq.com/openai/v1"
+)
 
 st.set_page_config(
     page_title="MCQ Practice App",
@@ -76,7 +80,7 @@ def generate_mcq(text):
             {"role": "user", "content": prompt}
         ],
         temperature=0.7,
-        max_tokens=800
+        max_tokens=700
     )
 
     return response.choices[0].message.content
