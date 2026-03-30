@@ -56,36 +56,30 @@ def read_file(file):
 def generate_mcq(text):
 
     prompt = f"""
-Create 5 MCQ questions from this text.
+    Generate 5 multiple choice questions from the text below.
 
-Format:
+    Format:
+    Question
+    A)
+    B)
+    C)
+    D)
+    Answer:
 
-Question
-A)
-B)
-C)
-D)
-
-Correct answer:
-Explanation:
-
-Text:
-{text}
-"""
+    Text:
+    {text}
+    """
 
     response = client.chat.completions.create(
-    model="llama3-70b-8192",
-    messages=[
-        {
-            "role": "user",
-            "content": f"Generate 5 multiple choice questions from the following text:\n{text}"
-        }
-    ],
-    temperature=0.7,
-    max_tokens=800
-)
+        model="llama3-70b-8192",
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.7,
+        max_tokens=800
+    )
 
-mcqs = response.choices[0].message.content
+    return response.choices[0].message.content
 
 if uploaded_file:
 
