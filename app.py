@@ -75,12 +75,12 @@ def generate_mcq(text):
     """
 
     response = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="mixtral-8x7b-32768",
         messages=[
             {"role": "user", "content": prompt}
         ],
-        temperature=0.7,
-        max_tokens=700
+        temperature=0.5,
+        max_tokens=500
     )
 
     return response.choices[0].message.content
