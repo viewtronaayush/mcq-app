@@ -5,7 +5,7 @@ import os
 from openai import OpenAI
 
 client = OpenAI(
-    api_key=os.getenv("GROQ_API_KEY"),
+    api_key=os.environ["GROQ_API_KEY"],
     base_url="https://api.groq.com/openai/v1"
 )
 
@@ -58,28 +58,29 @@ def read_file(file):
 
 
 def generate_mcq(text):
-    text = text[:3000]
+
     prompt = f"""
-    Generate 5 multiple choice questions from the text below.
+Generate 5 multiple choice questions from the text below.
 
-    Format:
-    Question
-    A)
-    B)
-    C)
-    D)
-    Answer:
+Format:
+Question
+A)
+B)
+C)
+D)
+Correct Answer:
 
-    Text:
-    {text}
-    """
+Text:
+{text}
+"""
 
     response = client.chat.completions.create(
-    model="mixtral-8x7b-32768",
-    messages=[
-        {"role": "user", "content": prompt}
-    ],
-    max_tokens=500
+        model="llama3-70b-8192",
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.3,
+        max_tokens=500
     )
 
     return response.choices[0].message.content
