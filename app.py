@@ -54,7 +54,7 @@ def read_file(file):
 
 
 def generate_mcq(text):
-
+    text = text[:3000]
     prompt = f"""
     Generate 5 multiple choice questions from the text below.
 
