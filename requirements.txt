@@ -1,10 +1,4 @@
-streamlit
-<<<<<<< HEAD
-groq
-pypdf
-python-docx
-=======
-pypdf
-python-docx
-openai>=1.0.0
->>>>>>> a586ffa (final working version)
+streamlit==1.32.0
+openai==1.12.0
+pypdf==4.2.0
+python-DOCX==1.1.0
