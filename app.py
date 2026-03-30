@@ -75,12 +75,14 @@ def generate_mcq(text):
     """
 
     response = client.chat.completions.create(
-        model="mixtral-8x7b-32768",
-        input=prompt,
-        max_output_tokens=500
+    model="mixtral-8x7b-32768",
+    messages=[
+        {"role": "user", "content": prompt}
+    ],
+    max_tokens=500
     )
 
-    return response.output_text
+    return response.choices[0].message.content
 
 if uploaded_file:
 
